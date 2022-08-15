@@ -27,6 +27,7 @@ class CategoryView(View):
     def post(self,request):
         data = json.loads(request.body)
         new_category = Category.objects.create(name=data['name'])
+
         return JsonResponse({'id': new_category.id, 'name': new_category.name}, safe=False,
                             json_dumps_params={'ensure_ascii': False})
 
@@ -50,7 +51,7 @@ class Ads(View):
 
     def post(self,request):
         data = json.loads(request.body)
-        new_ad = Category.objects.create(
+        new_ad = Ad.objects.create(
             name=data['name'],
             author=data['author'],
             price=data['price'],
